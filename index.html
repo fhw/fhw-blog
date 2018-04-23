@@ -7,16 +7,26 @@
     <title>fhw Page</title>
     <style>
         .animate-1{
-            animation: animate1 1s ease 0;
+            margin-top: 100px;
+            text-align: center;
+            font-size: 20px;
+            animation: animate1 1.5s linear 0ms infinite alternate;
         }
         @keyframes animate1 {
             0%{
                 transform-origin: 50% 50%;
-                transform:rotate(0)
+                transform:rotate(0);
+                color:red;
+            }
+            50%{
+                transform-origin: 50% 50%;
+                transform:rotate(360deg);
+                color:red; 
             }
             100%{
                 transform-origin: 50% 50%;
-                transform:rotate(270deg)
+                transform:rotate(0deg);
+                color:blue;
             }
             
             
@@ -24,6 +34,6 @@
     </style>
 </head>
 <body>
-    <h1 class="animate-1">github Page</h1>
+    <div class="animate-1"><span>github Page</span></div>
 </body>
 </html>
