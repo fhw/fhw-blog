@@ -5,8 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>fhw Page</title>
+    <style>
+        .animate-1{
+            animation: animate1 1s ease 0;
+        }
+        @keyframes animate1 {
+            0%{
+                transform-origin: 50% 50%;
+                transform:rotate(0)
+            }
+            100%{
+                transform-origin: 50% 50%;
+                transform:rotate(270deg)
+            }
+            
+            
+        }
+    </style>
 </head>
 <body>
-    <h1>github Page</h1>
+    <h1 class="animate-1">github Page</h1>
 </body>
 </html>
