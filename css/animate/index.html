@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 960px;
+            color: #263238;
+        }
+
+        .box {
+            padding-bottom: 60px;
+            width: 100%;
+            /*min-height: 200px;*/
+        }
+
+        .box1 .item {
+            padding: 20px 20px 20px 0;
+            display: inline-block;
+            width: 40%;
+        }
+
+        .box1 .item p {
+            padding-bottom: 20px;
+        }
+
+        .box1 .demo-el-1 {
+            width: 50px;
+            height: 50px;
+            background-color: #ee0290;
+        }
+
+        .box1:hover .demo-el-1 {
+            transform: translateX(100px);
+            background-color: #916eff;
+            border-radius: 50%;
+        }
+
+        .box1:hover .demo-el-1.transition {
+            transition-delay: 0s;
+            transition-duration: 1s;
+            transition-timing-function: ease;
+            transition-property: all;
+        }
+
+        .box1:hover .demo-el-1.transition.only-radius {
+            transition-property: border-radius;
+        }
+
+        .box1:hover .demo-el-1.transition.delay {
+            transition-delay: 500ms;
+        }
+
+
+        .btn {
+            position: relative;
+            margin: .4em;
+            padding: 1em;
+            cursor: pointer;
+            background: #e1e1e1;
+            text-decoration: none;
+            color: #666;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            border: none;
+            outline: none;
+        }
+
+        .btn div {
+            height: 0;
+            position: absolute;
+            transition: all .3s;
+            overflow: hidden;
+        }
+
+        .btn:hover div {
+            background-color: #000000;
+            color: #ffffff;
+            height: 10px;
+        }
+
+        /*card-3d*/
+        .box2 .card-3d ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+        }
+
+        .box2 .card-3d li {
+            position: relative;
+            margin-right: 20px;
+            width: 180px;
+            height: 200px;
+            text-align: center;
+        }
+
+        .box2 .card-3d li div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 2px 1px -1px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12);
+            border-radius: 4px;
+        }
+
+        .box2 .card-3d .front {
+            background-color: #fff;
+            transition: all 600ms;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transform: rotateY(0deg);
+            z-index: 1;
+        }
+
+        .box2 .card-3d .back {
+            background-color: #FF0266;
+            transition: all 600ms;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transform: rotateY(180deg);
+        }
+
+        .box2 .card-3d li:hover .front {
+            transform: rotateY(180deg);
+        }
+
+        .box2 .card-3d li:hover .back {
+            transform: rotateY(0deg);
+        }
+
+
+        /*menu-3d*/
+        .menu-3d {
+            margin-top: 40px;
+        }
+
+        .menu-3d ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            list-style: none;
+        }
+
+        .menu-3d li {
+            position: relative;
+        }
+
+        .menu-3d li .level-1 {
+            position: relative;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #000000;
+            background-color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .menu-3d li:not(:first-child) .level-1 {
+            border-left: none;
+        }
+
+        .menu-3d li .front, .menu-3d li .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .menu-3d .front {
+            background-color: #fff;
+            transition: all 600ms;
+            transform: translateY(0);
+            z-index: 1;
+        }
+
+        .menu-3d .back {
+            color: #fff;
+            background-color: #FF0266;
+            transition: all 600ms;
+        }
+        .menu-3d .back.top {
+            transform: translateY(-50px);
+        }
+
+        .menu-3d .level-1:hover > .top {
+            transform: translateY(50px);
+        }
+
+        .menu-3d .level-1:hover > .back.top {
+            transform: translateY(0);
+        }
+
+        .menu-3d .back.left {
+            transform: translateX(-120px);
+        }
+
+        .menu-3d .level-1:hover > .left {
+            transform: translateX(120px);
+        }
+
+        .menu-3d .level-1:hover > .back.left {
+            transform: translateX(0);
+        }
+
+        .menu-3d .right {
+            transform: translateX(0);
+        }
+
+        .menu-3d .back.right {
+            transform: translateX(120px);
+        }
+
+        .menu-3d .level-1:hover > .right {
+            transform: translateX(-120px);
+        }
+
+        .menu-3d .level-1:hover > .back.right {
+            transform: translateX(0);
+        }
+
+        .menu-3d .text-line:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 51%;
+            right: 51%;
+            bottom: 0;
+            background: #FF0266;
+            height: 4px;
+            transition-property: left, right;
+            transition-duration: 0.3s;
+            transition-timing-function: ease-out;
+        }
+
+        .menu-3d .level-1:hover > .text-line:before {
+            left: 0;
+            right: 0;
+        }
+
+
+        /* box4 loading */
+        .loading-circle {
+            display: inline-block;
+            width: 64px;
+            height: 64px;
+        }
+        .loading-circle:after {
+            content: " ";
+            display: block;
+            width: 46px;
+            height: 46px;
+            margin: 1px;
+            border-radius: 50%;
+            border: 5px solid;
+            border-color: #cd00ea transparent #cd00ea transparent;
+            animation: loading-circle 1.2s linear infinite;
+        }
+        @keyframes loading-circle {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-running {
+            display: inline-block;
+            position: relative;
+            width: 64px;
+            height: 64px;
+        }
+        .loading-running div {
+            display: inline-block;
+            position: absolute;
+            left: 6px;
+            width: 13px;
+            background: #cd00ea;
+            animation: loading-running 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+        }
+        .loading-running div:nth-child(1) {
+            left: 6px;
+            animation-delay: -0.24s;
+        }
+        .loading-running div:nth-child(2) {
+            left: 26px;
+            animation-delay: -0.12s;
+        }
+        .loading-running div:nth-child(3) {
+            left: 45px;
+            animation-delay: inherit;
+        }
+        @keyframes loading-running {
+            0% {
+                top: 6px;
+                height: 51px;
+            }
+            50%, 100% {
+                top: 19px;
+                height: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <section class="box box1">
+        <div class="item">
+            <p>不使用过渡属性</p>
+            <div class="demo-el-1"></div>
+        </div>
+        <div class="item">
+            <p>transition-property为all</p>
+            <div class="demo-el-1 transition"></div>
+        </div>
+        <div class="item">
+            <p>transition-property为border-radius</p>
+            <div class="demo-el-1 transition only-radius"></div>
+        </div>
+        <div class="item">
+            <p>transition-delay为500ms</p>
+            <div class="demo-el-1 transition delay"></div>
+        </div>
+    </section>
+    <section class="box box2">
+        <div class="card-3d">
+            <ul>
+                <li>
+                    <div class="front"></div>
+                    <div class="back"></div>
+                </li>
+                <li>
+                    <div class="front"></div>
+                    <div class="back"></div>
+                </li>
+                <li>
+                    <div class="front"></div>
+                    <div class="back"></div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="box box3">
+        <div class="menu-3d">
+            <ul>
+                <li>
+                    <div class="level-1">
+                        <div class="front top">HOME</div>
+                        <div class="back top">首页</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-1">
+                        <div class="front left">LIST</div>
+                        <div class="back left">列表</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-1">
+                        <div class="front right">DETAIL</div>
+                        <div class="back right">详情</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="level-1">
+                        <div class="front text-line">DETAIL</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section class="box box4">
+        <div class="loading-circle"></div>
+        <div class="loading-running" style="margin-left: 60px;"><div></div><div></div><div></div></div>
+    </section>
+</div>
+</body>
+</html>
